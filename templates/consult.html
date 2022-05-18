@@ -1,39 +1,49 @@
 <html>
 <head>
-    <title>Consult</title>
+    <title>Consultar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 </head>
 <body>
-    <h1>Consult</h1>
-    <form action="register.php" method="post">
+    <h1>Consultar</h1>
+    <form action="#" method="post">
+        {% csrf_token %}
         <p>
-            <label for="username">Nombres:</label>
-            <input type="text" name="username" id="username" />
+            <label for="user_document">Documento:</label>
+            <input type="text" name="user_document" id="user_document" />
         </p>
         <p>
-            <label for="username">Teléfono:</label>
-            <input type="text" name="username" id="username" />
-        </p>
-        <p>
-            <label for="username">Correo:</label>
-            <input type="text" name="username" id="username" />
-        </p>
-        <p>
-            <label for="username">Color:</label>
-            <input type="text" name="username" id="username" />
-        </p>
-        <p>
-            <label for="username">Placa:</label>
-            <input type="text" name="username" id="username" />
+            <label for="placa_vehiculo">Placa:</label>
+            <input type="text" name="placa_vehiculo" id="placa_vehiculo" />
         </p>
 
         <p>
             Ver tabla
-            {{context}}
+            {{context.nombres}}
+            {{context.correo}}
+            {{context.telefono}}
+            {{context.documento_usuario}}
+        </p>
+
+        <p>
+            {{context.modelo}}
+            {{context.fecha_entrada}}
+            {{context.placa_vehiculo}}
         </p>
 
             <input type="submit" value="Register" />
         </p>
     </form>
+    <a href="/register_vehicle">
+        <p >
+          Ir a registrar vehículo
+        </p>
+      </a>
+      <a href="/register_user">
+        <p >
+          Ir a registrar usuario
+        </p>
+      </a>
+
+</body>
 </html>

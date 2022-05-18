@@ -1,29 +1,29 @@
 <html>
 <head>
-    <title>Registrar usuario</title>
+    <title>Registrar vehículo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 </head>
 <body>
-    <h1>Registrar usuario</h1>
+    <h1>Registrar vehículo</h1>
     <form action="#" method="post">
         {% csrf_token %}
         
         <p>
-            <label for="name">Nombres:</label>
-            <input type="text" name="name" id="name" />
+            <label for="placa_vehiculo">Placa:</label>
+            <input type="text" name="placa_vehiculo" id="placa_vehiculo" />
         </p>
         <p>
-            <label for="email">Correo:</label>
-            <input type="email" name="email" id="email" />
+            <label for="documento_usuario">Documento:</label>
+            <input type="text" name="documento_usuario" id="documento_usuario" />
         </p>
         <p>
-            <label for="phone">Teléfono:</label>
-            <input type="text" name="phone" id="phone" />
+            <label for="modelo">modelo:</label>
+            <input type="text" name="modelo" id="modelo" />
         </p>
         <p>
-            <label for="user_document">Documento:</label>
-            <input type="number" name="user_document" id="user_document" />
+            <label for="fecha_entrada">Fecha:</label>
+            <input type="text" name="fecha_entrada" id="fecha_entrada" />
         </p>
         <p>
             <input type="submit" value="Register" />
@@ -34,5 +34,5 @@
           Volver a consulta
         </p>
       </a>
-</body>
+    </body>
 </html>

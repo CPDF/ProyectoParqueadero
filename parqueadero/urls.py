@@ -22,8 +22,7 @@ from App_Control_Parking.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
-    path('login/', register, name='login'),
-    path('register/', register, name='register'),
     path('register_user/', register_user, name='register_user'),
     path('consult/', consult, name='consult'),
+    path('register_vehicle/', register_vehicle, name='register_vehicle'),
 ]
