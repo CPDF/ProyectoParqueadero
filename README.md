@@ -5,6 +5,7 @@ Pasos para instalar y correr
 2. Crear carpeta .env
 3. Instalar librerias con "sudo pip install -r requirements.txt"
 4. Correr con "python manage.py runserver"
+5. Para crear una cuenta de admin -> "python manage.py createsuperuser"
 
 
 #En docker - Para producción
