@@ -17,21 +17,49 @@
             <input type="text" name="placa_vehiculo" id="placa_vehiculo" />
         </p>
 
-        <p>
-            Ver tabla
-            {{context.nombres}}
-            {{context.correo}}
-            {{context.telefono}}
-            {{context.documento_usuario}}
-        </p>
+        <table class="table">
 
-        <p>
-            {{context.modelo}}
-            {{context.fecha_entrada}}
-            {{context.placa_vehiculo}}
-        </p>
+        <thead>
+            <p>Consulta usuario</p>
+            <tr>
+                <th scope="col">Nombres</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Documento</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>{{context.nombres}}</td>
+                    <td>{{context.correo}}</td>
+                    <td>{{context.telefono}}</td>
+                    <td>{{context.documento_usuario}}</td>
+                </tr>
+            </tbody>
 
-            <input type="submit" value="Register" />
+    </table>
+
+    <table class="table">
+        <thead>
+            <p>Consulta placa</p>
+            <tr>
+                <th scope="col">Modelo</th>
+                <th scope="col">Fecha ingreso</th>
+                <th scope="col">Placa</th>
+                <th scope="col">Documento</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>{{context.modelo}}</td>
+                    <td>{{context.fecha_entrada}}</td>
+                    <td>{{context.placa_vehiculo}}</td>
+                    <td>{{context.documento_usuario}}</td>
+                </tr>
+            </tbody>
+    </table>
+
+            <input type="submit" value="Consultar" />
         </p>
     </form>
     <a href="/register_vehicle">
