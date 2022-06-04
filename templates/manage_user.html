@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Gestionar usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Gestión usuario</h1>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <table class="table">
+
+        <thead>
+            <p>Consulta usuario</p>
+            <tr>
+                <th scope="col">Nombres</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Documento</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>{{context.nombres}}</td>
+                    <td>{{context.correo}}</td>
+                    <td>{{context.telefono}}</td>
+                    <td>{{context.documento_usuario}}</td>
+                </tr>
+            </tbody>
+
+    </table>
+
+            <input type="submit" name="Borrar" value="Borrar" />
+            <input type="submit" value="Actualizar" disabled/>
+        </p>
+    </form>
+
+      <a href="/">
+        <p>
+          Ir a home
+        </p>
+      </a>
+
+</body>
+</html>

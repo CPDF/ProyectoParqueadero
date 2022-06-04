@@ -14,18 +14,36 @@ class Usuario(models.Model):
     def __str__(self):
         return self.documento_usuario
 
+class LugarParqueo(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    codigo_lugar = models.CharField(default='', max_length=1000)
+    placa_vehiculo_asignado = models.CharField(default='', max_length=1000)
+    documento_usuario = models.CharField(default='', max_length=1000)
+    fecha_entrada = models.DateTimeField(default=now, blank=True)
+    ocupado = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return self.codigo_lugar
+
+
 # Create your models here.
 class Vehiculo(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     placa_vehiculo = models.CharField(default='', max_length=1000)
     documento_usuario = models.CharField(default='', max_length=1000)
     modelo = models.CharField(default='', max_length=10)
-    fecha_entrada = models.CharField(default='', max_length=1000)
     typology = models.ManyToManyField(
     Usuario,
     blank=True,
     related_name='usuario'
 )
+    typology_lugar = models.ManyToManyField(
+    LugarParqueo,
+    blank=True,
+    related_name='lugar'
+)
+
     def __str__(self):
         return self.documento_usuario
 
@@ -38,9 +56,3 @@ class Suscripcion(models.Model):
     def __str__(self):
         return self.documento_usuario
 
-class LugarParqueo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    codigo_lugar = models.CharField(default='', max_length=1000)
-
-    def __str__(self):
-        return self.placa

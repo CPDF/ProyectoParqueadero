@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register_user/', GestionarUsuario.as_view(), name='register_user'),
     path('', Consultar.as_view(), name='consult'),
-    path('register_vehicle/', GestionarVehiculo.as_view(), name='register_vehicle'),
+    path('register_vehicle/', GestionarEntradaVehiculo.as_view(), name='register_vehicle'),
+    path('manage_user/<int:id>', GestionarUsuario.gestionar_usuario, name='manage_user'),
+    
 ]

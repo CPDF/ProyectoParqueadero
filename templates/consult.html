@@ -26,6 +26,7 @@
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Documento</th>
+                <th scope="col">Borrar</th>
             </tr>
         </thead>
             <tbody>
@@ -34,6 +35,7 @@
                     <td>{{context.correo}}</td>
                     <td>{{context.telefono}}</td>
                     <td>{{context.documento_usuario}}</td>
+                    <td><a href="manage_user/{{context.documento_usuario}}">Gestionar</a></td>
                 </tr>
             </tbody>
 

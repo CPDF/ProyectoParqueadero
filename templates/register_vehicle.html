@@ -5,25 +5,42 @@
 
 </head>
 <body>
-    <h1>Registrar vehículo</h1>
+    <h1>Registrar entrada de vehículo</h1>
     <form action="#" method="post">
         {% csrf_token %}
+
+        <p>
+            <label for="nombres">Nombre usuario:</label>
+            <input type="text" name="nombres" id="nombres" />
+        </p>
         
         <p>
-            <label for="placa_vehiculo">Placa:</label>
+            <label for="documento_usuario">Documento usuario:</label>
+            <input type="number" name="documento_usuario" id="documento_usuario" />
+        </p>
+        <p>
+            <label for="telefono">Telefono usuario:</label>
+            <input type="number" name="telefono" id="telefono" />
+        </p>
+        <p>
+            <label for="correo">Correo usuario:</label>
+            <input type="email" name="correo" id="correo" />
+        </p>
+        <p>
+            <label for="placa_vehiculo">Placa vehículo:</label>
             <input type="text" name="placa_vehiculo" id="placa_vehiculo" />
         </p>
         <p>
-            <label for="documento_usuario">Documento:</label>
-            <input type="text" name="documento_usuario" id="documento_usuario" />
-        </p>
-        <p>
-            <label for="modelo">modelo:</label>
+            <label for="modelo">Modelo vehículo:</label>
             <input type="text" name="modelo" id="modelo" />
         </p>
         <p>
-            <label for="fecha_entrada">Fecha:</label>
-            <input type="text" name="fecha_entrada" id="fecha_entrada" />
+            <label for="fecha_entrada">Fecha de entrada vehículo:</label>
+            <input type="date" name="fecha_entrada" id="fecha_entrada" />
+        </p>
+        <p>
+            <label for="lugar">Lugar asignado:</label>
+            <input type="number" name="lugar" id="lugar" />
         </p>
         <p>
             <input type="submit" value="Register" />

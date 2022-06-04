@@ -5,3 +5,4 @@ from .models import Usuario, Vehiculo, LugarParqueo, Suscripcion
 
 admin.site.register(Usuario)
 admin.site.register(Vehiculo)
+admin.site.register(LugarParqueo)
