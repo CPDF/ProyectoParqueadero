@@ -26,7 +26,8 @@
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Documento</th>
-                <th scope="col">Borrar</th>
+                <th scope="col">Gestionar</th>
+                <th scope="col">Dar Salida</th>
             </tr>
         </thead>
             <tbody>
@@ -36,6 +37,7 @@
                     <td>{{context.telefono}}</td>
                     <td>{{context.documento_usuario}}</td>
                     <td><a href="manage_user/{{context.documento_usuario}}">Gestionar</a></td>
+                    <td><a href="checkout/{{context.documento_usuario}}">Dar Salida</a></td>
                 </tr>
             </tbody>
 

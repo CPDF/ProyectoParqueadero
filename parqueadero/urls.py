@@ -25,5 +25,5 @@ urlpatterns = [
     path('', Consultar.as_view(), name='consult'),
     path('register_vehicle/', GestionarEntradaVehiculo.as_view(), name='register_vehicle'),
     path('manage_user/<int:id>', GestionarUsuario.gestionar_usuario, name='manage_user'),
-    
+    path('checkout/<int:id>', GestionarSalidaVehiculo.as_view(), name='checkout'),
 ]

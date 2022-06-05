@@ -1,6 +1,8 @@
 from django.shortcuts import HttpResponse
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
+import datetime
+import pytz
 
 # Models
 from App_Control_Parking.models import Usuario, Vehiculo, LugarParqueo
@@ -60,6 +62,38 @@ class GestionarEntradaVehiculo(TemplateView):
             return redirect('/')
         return render(request, 'register_vehicle.html')
     
+
+class GestionarSalidaVehiculo(TemplateView):
+    template_name = "checkout.html"
+
+    def get(self, request, *args, **kwargs):
+        print(self, request, args, kwargs)
+        id = kwargs['id']
+        vehiculos = Vehiculo.objects.filter(documento_usuario=id)
+        current_date = datetime.datetime.now()
+        fecha_entrada = vehiculos.first().typology_lugar.first().fecha_entrada
+        fecha_salida = current_date
+        fecha_salida = pytz.utc.localize(fecha_salida)
+        tiempo_transcurrido = fecha_salida - fecha_entrada
+
+        context = {}
+        
+        context["dias"] = tiempo_transcurrido.days
+        context["precio"] = tiempo_transcurrido.days * 10000
+
+        return render(request, 'checkout.html', {'context': context})
+
+    def post(elf, request, *args, **kwargs):
+        if(request.POST):
+            id = kwargs['id']
+            vehiculos = Vehiculo.objects.filter(documento_usuario=id)
+            usuario = Usuario.objects.filter(documento_usuario=id)
+            lugar_parqueo = LugarParqueo.objects.filter(documento_usuario=id)
+            usuario.delete()
+            lugar_parqueo.delete()
+            vehiculos.delete()
+            return redirect('/')
+
 
 
 
@@ -149,6 +183,3 @@ class GestionarUsuario(TemplateView):
             return redirect('/')
 
         return render(request, 'manage_user.html', {'context': context})
-
-
-

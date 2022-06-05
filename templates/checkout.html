@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Salida usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Salida usuario</h1>
+    <form action="#" method="POST">
+        {% csrf_token %}
+        <table class="table">
+
+        <thead>
+            <p>Precio a pagar</p>
+            <tr>
+                <th scope="col">Precio</th>
+                <th scope="col">Horas</th>
+
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>{{context.precio}} COP</td>
+                    <td>{{context.dias}}</td>
+                </tr>
+            </tbody>
+
+    </table>
+
+            <input type="submit" name="Cobrar" value="Cobrar" />
+        </p>
+    </form>
+
+      <a href="/">
+        <p>
+          Ir a home
+        </p>
+      </a>
+
+</body>
+</html>
