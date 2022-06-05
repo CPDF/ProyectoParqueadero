@@ -67,7 +67,6 @@ class GestionarSalidaVehiculo(TemplateView):
     template_name = "checkout.html"
 
     def get(self, request, *args, **kwargs):
-        print(self, request, args, kwargs)
         id = kwargs['id']
         vehiculos = Vehiculo.objects.filter(documento_usuario=id)
         current_date = datetime.datetime.now()
@@ -93,6 +92,7 @@ class GestionarSalidaVehiculo(TemplateView):
             lugar_parqueo.delete()
             vehiculos.delete()
             return redirect('/')
+        return render(request, 'checkout.html')
 
 
 
@@ -102,34 +102,36 @@ class Consultar(TemplateView):
 
     def get(self, request):
         context = {}
-        if ((request.method == 'GET') and ((request.GET.get('user_document') != None) or (request.GET.get('vehicle_plate') != None))):
-            user_document = request.GET.get('user_document')
-            placa = request.GET.get('placa_vehiculo')
-
-            if((user_document == '') and (placa == '')):
-                context['error'] = 'Debe ingresar un documento o placa'
-                return render(request, 'consult.html', context)
-
-            if(user_document):
+        try:
+            if ((request.method == 'GET') and ((request.GET.get('user_document') != None) or (request.GET.get('vehicle_plate') != None))):
+                
                 user_document = request.GET.get('user_document')
                 placa = request.GET.get('placa_vehiculo')
 
-                users = Usuario.objects.get(documento_usuario=user_document)
-                context["nombres"] = users.nombres
-                context["telefono"] = users.telefono
-                context["correo"] = users.correo
-                context["documento_usuario"] = users.documento_usuario
-                return render(request, 'consult.html', {'context': context})
+                if((user_document == '') and (placa == '')):
+                    context['error'] = 'Debe ingresar un documento o placa'
+                    return render(request, 'consult.html', context) #TODO: Show an alert message to the user
 
-            elif(placa):
-                vehicles = Vehiculo.objects.get(placa_vehiculo=placa)
-                context["modelo"] = vehicles.modelo
-                context["fecha_entrada"] = vehicles.fecha_entrada
-                context["placa_vehiculo"] = vehicles.placa_vehiculo
-                context["documento_usuario"] = vehicles.documento_usuario
-                return render(request, 'consult.html', {'context': context})
+                if(user_document):
+                    user_document = request.GET.get('user_document')
+                    placa = request.GET.get('placa_vehiculo')
 
-        return render(request, 'consult.html', {'context': context})
+                    users = Usuario.objects.get(documento_usuario=user_document)
+                    context["nombres"] = users.nombres
+                    context["telefono"] = users.telefono
+                    context["correo"] = users.correo
+                    context["documento_usuario"] = users.documento_usuario
+                    context["nombre_gestion"] = "Gestionar entrada"
+                    context["enlace_gestion"] = "manage_user/"+str(users.documento_usuario)
+                    context["nombre_salida"] = "Dar salida"
+                    context["enlace_salida"] = "checkout/"+str(users.documento_usuario)
+                    return render(request, 'consult.html', {'context': context})
+
+
+            return render(request, 'consult.html', {'context': context})
+        except:
+            context['error'] = 'No se encontró el usuario o vehículo'
+            return render(request, 'consult.html', {'context': context}) #TODO: Show an alert message to the user
 
 
 

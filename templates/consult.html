@@ -12,10 +12,6 @@
             <label for="user_document">Documento:</label>
             <input type="text" name="user_document" id="user_document" />
         </p>
-        <p>
-            <label for="placa_vehiculo">Placa:</label>
-            <input type="text" name="placa_vehiculo" id="placa_vehiculo" />
-        </p>
 
         <table class="table">
 
@@ -36,46 +32,23 @@
                     <td>{{context.correo}}</td>
                     <td>{{context.telefono}}</td>
                     <td>{{context.documento_usuario}}</td>
-                    <td><a href="manage_user/{{context.documento_usuario}}">Gestionar</a></td>
-                    <td><a href="checkout/{{context.documento_usuario}}">Dar Salida</a></td>
+                    <td><a href={{context.enlace_gestion}}>{{context.nombre_gestion}}</a></td>
+                    <td><a href="{{context.enlace_salida}}">{{context.nombre_salida}}</a></td>
                 </tr>
             </tbody>
 
     </table>
 
-    <table class="table">
-        <thead>
-            <p>Consulta placa</p>
-            <tr>
-                <th scope="col">Modelo</th>
-                <th scope="col">Fecha ingreso</th>
-                <th scope="col">Placa</th>
-                <th scope="col">Documento</th>
-            </tr>
-        </thead>
-            <tbody>
-                <tr>
-                    <td>{{context.modelo}}</td>
-                    <td>{{context.fecha_entrada}}</td>
-                    <td>{{context.placa_vehiculo}}</td>
-                    <td>{{context.documento_usuario}}</td>
-                </tr>
-            </tbody>
-    </table>
 
             <input type="submit" value="Consultar" />
         </p>
     </form>
     <a href="/register_vehicle">
         <p >
-          Ir a registrar vehículo
+          Dar entrada a vehículo
         </p>
       </a>
-      <a href="/register_user">
-        <p >
-          Ir a registrar usuario
-        </p>
-      </a>
+
 
 </body>
 </html>
