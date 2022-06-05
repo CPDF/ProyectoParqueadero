@@ -18,3 +18,5 @@ Para detener
 
 #Wireframing
 https://miro.com/app/board/uXjVO0uyMMU=/
+
+![](Animation.gif)

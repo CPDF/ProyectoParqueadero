@@ -18,14 +18,15 @@ class GestionarEntradaVehiculo(TemplateView):
     def post(self, request):
         if(request.POST):
             name = request.POST.get('nombres')
-            email = request.POST.get('telefono')
-            phone = request.POST.get('correo')
+            email = request.POST.get('correo')
+            phone = request.POST.get('telefono')
             placa_vehiculo = request.POST.get('placa_vehiculo')
             documento_usuario = request.POST.get('documento_usuario')
             modelo = request.POST.get('modelo')
             fecha_entrada = request.POST.get('fecha_entrada')
             lugar = request.POST.get('lugar')
 
+            #print(f"name: {name}, email: {email}, phone: {phone}, placa_vehiculo: {placa_vehiculo}, documento_usuario: {documento_usuario}, modelo: {modelo}, fecha_entrada: {fecha_entrada}, lugar: {lugar}")
             #Register the user in the database if it doesn't exist
             user = Usuario(nombres=name, correo=email, telefono=phone, documento_usuario=documento_usuario)
             #if user already exists, dont save
@@ -34,6 +35,7 @@ class GestionarEntradaVehiculo(TemplateView):
             
             user.save()
 
+            #Register the vehicle in the database if it doesn't exist
             #If the plate already exists, give alert
             if(Vehiculo.objects.filter(placa_vehiculo=placa_vehiculo).exists()):
                 return redirect('/') #TODO: Show an alert message to the user
@@ -49,11 +51,14 @@ class GestionarEntradaVehiculo(TemplateView):
             #Direct assignment to the forward side of a many-to-many
             documentos = Usuario.objects.filter(documento_usuario=documento_usuario)
             lugares = LugarParqueo.objects.filter(codigo_lugar=lugar)
+
+            #Create a Vehicicle instance that stores the relationship between the user and the parking lot
             instance = Vehiculo.objects.create(documento_usuario=documento_usuario) 
 
             instance.typology.set(documentos)
             instance.typology_lugar.set(lugares)
             #Fill the rest
+            instance.documento_usuario = documento_usuario
             instance.placa_vehiculo = placa_vehiculo
             instance.modelo = modelo
             instance.fecha_entrada = fecha_entrada
@@ -154,6 +159,7 @@ class GestionarUsuario(TemplateView):
         return render(request, 'register_user.html')
 
 
+    #TODO: Implement edit user
     def edit(self, request):
         if request.method == 'POST':
             name = request.POST.get('name')
@@ -169,6 +175,7 @@ class GestionarUsuario(TemplateView):
         return render(request, 'register_user.html')
 
 
+    #TODO: Change function name to "delete_user" or "borrar_usuario".
     def gestionar_usuario(request, *args, **kwargs):
         id = kwargs['id']
         context = {}
